@@ -1,5 +1,3 @@
-'ui';
-
 // 请求截图权限
 if (!requestScreenCapture()) {
     toast('请求截图权限失败');
@@ -311,5 +309,4 @@ events.on('exit', () => {
     }
 });
 
-console.log('悬浮窗已启动，可以拖拽移动位置');
-toast('OCR自动化脚本已启动');
+setInterval(() => {}, 1000);
