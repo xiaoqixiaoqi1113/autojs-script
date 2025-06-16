@@ -7,11 +7,21 @@ let resetWindow = floaty.window(
     </frame>
 );
 
+// 设备宽度
+let phoneWidth = device.width;
+
+// 设备高度
+let phoneHeigth = device.height;
+
 // 设置按钮位置
-resetWindow.setPosition(device.width / 2 - 75, device.height / 2);
+resetWindow.setPosition(phoneWidth / 2 - 75, phoneHeigth / 2);
 
 let isRunning = false; // 初始化为false
-let mainThread = null;
+let mainThread = null; // 线程
+let time = null; // 定时器
+let isRun = true; // 是否是第一次点击确定
+let x = 47 + (1211 - 47) / 2;
+let y = 2581 + (2747 - 2581) / 2;
 
 // 按钮点击事件
 resetWindow.resetBtn.on('click', function () {
@@ -44,13 +54,13 @@ function runMainScript() {
             // 寻找并点击立即购买按钮
             className('android.widget.TextView').text('立即购买').findOne().click();
 
+            press(x, y, 1);
+
+            sleep(100);
+
             // 检查是否出现确定按钮
-            if (text('确定').exists()) {
-                console.log('检测到确定按钮');
-
-                className('android.widget.TextView').text('确定').findOne().click();
-
-                console.log('确定按钮点击 -- 完毕!');
+            if (text('确认信息并支付').exists()) {
+                console.log('检测到 - 确认信息并支付');
 
                 className('android.widget.TextView').text('确认信息并支付').findOne().click();
 
@@ -68,9 +78,7 @@ function runMainScript() {
             console.log('操作出错：' + e);
         }
 
-        console.log('未检测按钮!持续刷新!');
-
-        sleep(500);
+        sleep(300);
     }
 }
 
