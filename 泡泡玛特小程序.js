@@ -118,9 +118,9 @@ function step_2(results) {
             tip2_y = y2;
         }
 
-        tabTip == '到店取' ? click(tip1_x, tip1_y) : click(tip2_x, tip2_y);
+        click(tip1_x, tip1_y);
 
-        tabTip == '到店取' ? (tabTip = '送到家') : (tabTip = '到店取');
+        tabTip = '送到家';
     }
 }
 
